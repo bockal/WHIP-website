@@ -5,9 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Walnut Hills Instrumental Parents supports every student musician at Walnut Hills High School."
+      content="Support Walnut Hills High School student musicians in Cincinnati through donations, volunteering, merchandise, concerts, and community engagement."
     />
-    <title>WHIP | Walnut Hills Instrumental Parents</title>
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="theme-color" content="#101b34" />
+    <link rel="canonical" href="https://walnuthillsmusic.org/" />
+    <link rel="icon" href="/favicon-monogram.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Walnut Hills Instrumental Parents" />
+    <meta property="og:url" content="https://walnuthillsmusic.org/" />
+    <meta property="og:title" content="Walnut Hills Instrumental Parents | Cincinnati Music Support" />
+    <meta property="og:description" content="Help Walnut Hills High School student musicians thrive across band, orchestra, choir, jazz, steel drums, and marching band." />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Walnut Hills Instrumental Parents" />
+    <meta name="twitter:description" content="Supporting student musicians at Walnut Hills High School in Cincinnati." />
+    <title>Walnut Hills Instrumental Parents | Cincinnati Music Support</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://walnuthillsmusic.org/#organization",
+            "name": "Walnut Hills Instrumental Parents",
+            "alternateName": "WHIP",
+            "url": "https://walnuthillsmusic.org/",
+            "logo": {
+              "@type": "ImageObject",
+              "@id": "https://walnuthillsmusic.org/#logo",
+              "url": "https://walnuthillsmusic.org/whip-horizontal-logo.png",
+              "contentUrl": "https://walnuthillsmusic.org/whip-horizontal-logo.png",
+              "width": 2048,
+              "height": 597,
+              "caption": "Walnut Hills Instrumental Parents"
+            },
+            "image": { "@id": "https://walnuthillsmusic.org/#logo" },
+            "nonprofitStatus": "Nonprofit501c3",
+            "areaServed": { "@type": "City", "name": "Cincinnati" },
+            "sameAs": [
+              "https://www.instagram.com/whhs.marchingband/",
+              "https://www.facebook.com/groups/190343281738609"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://walnuthillsmusic.org/#website",
+            "url": "https://walnuthillsmusic.org/",
+            "name": "Walnut Hills Instrumental Parents",
+            "alternateName": "WHIP",
+            "publisher": { "@id": "https://walnuthillsmusic.org/#organization" },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://walnuthillsmusic.org/#webpage",
+            "url": "https://walnuthillsmusic.org/",
+            "name": "Walnut Hills Instrumental Parents | Cincinnati Music Support",
+            "description": "Support Walnut Hills High School student musicians through donations, volunteering, merchandise, concerts, and community engagement.",
+            "isPartOf": { "@id": "https://walnuthillsmusic.org/#website" },
+            "about": { "@id": "https://walnuthillsmusic.org/#organization" },
+            "primaryImageOfPage": { "@id": "https://walnuthillsmusic.org/#logo" },
+            "inLanguage": "en-US"
+          }
+        ]
+      }
+    </script>
     <style>
       :root {
         --navy: #101b34;
@@ -127,8 +189,10 @@
       }
       .brand-logo {
         display: block;
-        width: 180px;
+        width: min(380px, 36vw);
+        max-height: 92px;
         height: auto;
+        object-fit: contain;
       }
       .footer-logo {
         width: 245px;
@@ -720,20 +784,9 @@
         .brand {
           gap: 7px;
         }
-        .brand-mark {
-          width: 72px;
-          height: 54px;
-          flex-basis: 72px;
-        }
-        .brand-copy strong {
-          font-size: 0.9rem;
-        }
-        .brand-copy span {
-          font-size: 0.55rem;
-          letter-spacing: 0.1em;
-        }
         .brand-logo {
-          width: 125px;
+          width: min(245px, 64vw);
+          max-height: 72px;
         }
         .footer-logo {
           width: 220px;
@@ -766,15 +819,14 @@
           href="#top"
           aria-label="Walnut Hills Instrumental Parents home"
         >
-          <span class="brand-mark" id="headerLogo"
-            ><img
-              class="lottie-fallback"
-              src="whip-block-logo-fallback.png"
-              alt="" /><span class="lottie-logo" aria-hidden="true"></span
-          ></span>
-          <span class="brand-copy"
-            ><strong>WHIP</strong><span>INSTRUMENTAL PARENTS</span></span
-          >
+          <img
+            class="brand-logo"
+            src="whip-horizontal-logo.png"
+            width="2048"
+            height="597"
+            alt="Walnut Hills Instrumental Parents"
+            fetchpriority="high"
+          />
         </a>
         <div class="links">
           <a href="#programs">Programs</a><a href="#events">Events</a
@@ -1219,27 +1271,7 @@
       </div>
     </dialog>
     <div class="toast" id="toast">Added to cart</div>
-    <script src="lottie.min.js"></script>
-    <script src="whip-block-logo-data.js"></script>
     <script>
-      const logoMark = document.querySelector("#headerLogo");
-      if (window.lottie && window.WHIP_LOGO_ANIMATION && logoMark) {
-        const reduceMotion = window.matchMedia(
-          "(prefers-reduced-motion: reduce)",
-        ).matches;
-        const logoAnimation = lottie.loadAnimation({
-          container: logoMark.querySelector(".lottie-logo"),
-          renderer: "svg",
-          loop: false,
-          autoplay: !reduceMotion,
-          animationData: window.WHIP_LOGO_ANIMATION,
-          rendererSettings: { preserveAspectRatio: "xMidYMid meet" },
-        });
-        logoAnimation.addEventListener("DOMLoaded", () => {
-          logoMark.classList.add("is-ready");
-          if (reduceMotion) logoAnimation.goToAndStop(0, true);
-        });
-      }
       const cart = [],
         $ = (s) => document.querySelector(s);
       document.querySelectorAll(".tier").forEach(
