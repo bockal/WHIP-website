@@ -791,6 +791,31 @@
         .footer-logo {
           width: 220px;
         }
+        footer {
+          position: static;
+          height: auto;
+          min-height: 0;
+          padding: 34px 18px 22px;
+        }
+        .foot {
+          grid-template-columns: 1fr 1fr;
+          gap: 22px 18px;
+        }
+        .foot > div:first-child {
+          grid-column: 1 / -1;
+        }
+        .foot h3 {
+          margin: 0 0 8px;
+          font-size: 1.05rem;
+        }
+        .foot a {
+          margin: 5px 0;
+          font-size: 0.88rem;
+        }
+        .copyright {
+          margin-top: 24px;
+          padding-top: 16px;
+        }
         section {
           padding: 62px 18px;
         }
