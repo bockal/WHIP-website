@@ -33,8 +33,11 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [{ url: "/favicon-monogram.svg", type: "image/svg+xml" }],
-    shortcut: "/favicon-monogram.svg",
+    icon: [
+      { url: "/favicon-monogram.png", type: "image/png", sizes: "512x512" },
+      { url: "/favicon-monogram.svg", type: "image/svg+xml", sizes: "any" },
+    ],
+    shortcut: "/favicon-monogram.png",
   },
   openGraph: {
     type: "website",
