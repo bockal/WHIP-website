@@ -34,10 +34,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon-monogram.png", type: "image/png", sizes: "512x512" },
-      { url: "/favicon-monogram.svg", type: "image/svg+xml", sizes: "any" },
+      { url: "/favicon-music.png", type: "image/png", sizes: "96x96" },
+      { url: "/favicon-music.svg", type: "image/svg+xml", sizes: "any" },
     ],
-    shortcut: "/favicon-monogram.png",
+    shortcut: "/favicon-music.png",
   },
   openGraph: {
     type: "website",

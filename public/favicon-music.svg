@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Walnut Hills Music icon</title>
+  <desc id="desc">Gold and navy Walnut Hills monogram with the word Music on a white square background.</desc>
+  <rect width="512" height="512" fill="#ffffff"/>
+  <image href="favicon-monogram.svg" x="70" y="18" width="372" height="372"/>
+  <text x="256" y="464" text-anchor="middle" fill="#071c49" font-family="DejaVu Serif, Georgia, serif" font-size="94" font-weight="900" letter-spacing="2">MUSIC</text>
+</svg>
