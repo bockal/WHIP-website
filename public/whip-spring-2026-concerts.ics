@@ -1,0 +1,95 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Walnut Hills Instrumental Parents//Spring 2026 Concerts//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Walnut Hills Spring 2026 Concerts
+X-WR-TIMEZONE:America/New_York
+BEGIN:VTIMEZONE
+TZID:America/New_York
+BEGIN:STANDARD
+DTSTART:20261101T020000
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+END:STANDARD
+BEGIN:DAYLIGHT
+DTSTART:20260308T020000
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+END:DAYLIGHT
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:whip-20260430-jazz@walnuthillsmusic.org
+DTSTAMP:20260908T000000Z
+DTSTART;TZID=America/New_York:20260430T190000
+DTEND;TZID=America/New_York:20260430T210000
+SUMMARY:Jazz Ensembles Concert
+LOCATION:Walnut Hills High School Auditorium
+DESCRIPTION:Admission is free. Donations are welcome.
+END:VEVENT
+BEGIN:VEVENT
+UID:whip-20260506-junior-band@walnuthillsmusic.org
+DTSTAMP:20260908T000000Z
+DTSTART;TZID=America/New_York:20260506T190000
+DTEND;TZID=America/New_York:20260506T210000
+SUMMARY:Beginning\, Intermediate & Junior Band Concert
+LOCATION:Walnut Hills High School Auditorium
+DESCRIPTION:Admission is free. Donations are welcome.
+END:VEVENT
+BEGIN:VEVENT
+UID:whip-20260507-symphonic-band@walnuthillsmusic.org
+DTSTAMP:20260908T000000Z
+DTSTART;TZID=America/New_York:20260507T190000
+DTEND;TZID=America/New_York:20260507T210000
+SUMMARY:Symphonic Band and Wind Ensemble Concert
+LOCATION:Walnut Hills High School Auditorium
+DESCRIPTION:Admission is free. Donations are welcome.
+END:VEVENT
+BEGIN:VEVENT
+UID:whip-20260508-steel-drums@walnuthillsmusic.org
+DTSTAMP:20260908T000000Z
+DTSTART;TZID=America/New_York:20260508T190000
+DTEND;TZID=America/New_York:20260508T210000
+SUMMARY:Steel Drum Concert
+LOCATION:Triangle Courtyard; Auditorium if inclement weather
+DESCRIPTION:Admission is free. Donations are welcome.
+END:VEVENT
+BEGIN:VEVENT
+UID:whip-20260511-junior-choirs@walnuthillsmusic.org
+DTSTAMP:20260908T000000Z
+DTSTART;TZID=America/New_York:20260511T190000
+DTEND;TZID=America/New_York:20260511T210000
+SUMMARY:Junior High Choirs Concert
+LOCATION:Walnut Hills High School Auditorium
+DESCRIPTION:Admission is free. Donations are welcome.
+END:VEVENT
+BEGIN:VEVENT
+UID:whip-20260512-senior-choirs@walnuthillsmusic.org
+DTSTAMP:20260908T000000Z
+DTSTART;TZID=America/New_York:20260512T190000
+DTEND;TZID=America/New_York:20260512T210000
+SUMMARY:Senior High Choirs Concert
+LOCATION:Walnut Hills High School Auditorium
+DESCRIPTION:Admission is free. Donations are welcome.
+END:VEVENT
+BEGIN:VEVENT
+UID:whip-20260513-orchestra@walnuthillsmusic.org
+DTSTAMP:20260908T000000Z
+DTSTART;TZID=America/New_York:20260513T190000
+DTEND;TZID=America/New_York:20260513T210000
+SUMMARY:Senior and Chamber Orchestra Concert
+LOCATION:Walnut Hills High School Auditorium
+DESCRIPTION:Admission is free. Donations are welcome.
+END:VEVENT
+BEGIN:VEVENT
+UID:whip-20260514-strings@walnuthillsmusic.org
+DTSTAMP:20260908T000000Z
+DTSTART;TZID=America/New_York:20260514T190000
+DTEND;TZID=America/New_York:20260514T210000
+SUMMARY:Beginning\, Intermediate & Junior Strings Concert
+LOCATION:Walnut Hills High School Auditorium
+DESCRIPTION:Admission is free. Donations are welcome.
+END:VEVENT
+END:VCALENDAR

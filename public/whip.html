@@ -260,18 +260,27 @@
         border: 1px solid var(--navy);
       }
       .hero {
-        background: var(--navy);
+        background:
+          linear-gradient(90deg, rgba(5, 20, 49, 0.04), rgba(5, 20, 49, 0.02)),
+          url("hero-joy.webp") center / cover no-repeat,
+          var(--navy);
         color: white;
         overflow: hidden;
       }
       .hero-inner {
-        max-width: 1180px;
+        max-width: 1320px;
         margin: auto;
-        padding: 88px 24px 78px;
-        display: grid;
-        grid-template-columns: 1.12fr 0.88fr;
+        min-height: min(760px, calc(100vh - 110px));
+        padding: 112px 8.5% 86px;
+        display: block;
+        box-sizing: border-box;
+      }
+      .hero-inner > div {
+        width: min(470px, 47vw);
+        padding-top: 18px;
+      }
+      .hero-inner {
         align-items: center;
-        gap: 55px;
       }
       .eyebrow {
         text-transform: uppercase;
@@ -300,13 +309,26 @@
         margin-top: 30px;
       }
       .hero-art {
-        position: relative;
+        display: none;
       }
-      .hero-art img {
+      .hero-art .hero-photo {
         width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
         display: block;
         border: 8px solid white;
         box-shadow: 24px 24px 0 var(--gold);
+      }
+      .hero-poster {
+        position: absolute;
+        right: -22px;
+        bottom: 34px;
+        width: clamp(118px, 32%, 190px);
+        height: auto;
+        display: block;
+        border: 3px solid var(--gold2);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.48);
+        transform: rotate(1.25deg);
       }
       .hero-art figcaption {
         background: white;
@@ -620,6 +642,66 @@
       .volunteer .btn {
         width: 100%;
       }
+      .calendar-card {
+        background: var(--navy);
+        color: white;
+        padding: 30px;
+      }
+      .calendar-card h3 {
+        font: 700 2rem/1 Georgia;
+        margin: 8px 0 20px;
+      }
+      .calendar-month {
+        background: #fff;
+        color: var(--ink);
+        padding: 14px;
+      }
+      .calendar-month header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font: 700 1.1rem Georgia;
+        margin-bottom: 10px;
+      }
+      .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px;
+        text-align: center;
+        font-size: 0.72rem;
+      }
+      .calendar-grid span {
+        min-height: 24px;
+        display: grid;
+        place-items: center;
+      }
+      .calendar-grid .day-name {
+        color: var(--muted);
+        font-weight: 800;
+        min-height: auto;
+      }
+      .calendar-grid .concert-day {
+        background: var(--gold);
+        color: var(--navy);
+        font-weight: 900;
+        border-radius: 50%;
+      }
+      .calendar-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 16px;
+      }
+      .calendar-actions .btn {
+        width: auto;
+        justify-content: center;
+        font-size: 0.83rem;
+      }
+      .calendar-note {
+        color: #ccd2df;
+        font-size: 0.8rem;
+        margin: 16px 0 0;
+      }
       .governance {
         background: var(--cream);
       }
@@ -753,7 +835,16 @@
           grid-template-columns: 1fr;
         }
         .hero-inner {
-          padding-top: 58px;
+          min-height: 620px;
+          padding: 70px 7% 54px;
+        }
+        .hero-inner > div {
+          width: min(420px, 72vw);
+        }
+        .hero-poster {
+          right: 10px;
+          bottom: 38px;
+          width: min(34vw, 165px);
         }
         .section-head {
           display: block;
@@ -770,8 +861,21 @@
         .event > a {
           display: none;
         }
+        .calendar-actions {
+          grid-template-columns: 1fr;
+        }
       }
       @media (max-width: 540px) {
+        .hero {
+          background-position: 60% center;
+        }
+        .hero-inner {
+          min-height: 600px;
+          padding: 58px 7% 42px;
+        }
+        .hero-inner > div {
+          width: min(320px, 82vw);
+        }
         .stats,
         .grid4,
         .board,
@@ -904,11 +1008,18 @@
           </div>
           <figure class="hero-art">
             <img
-              src="whhsmb2025.png"
-              alt="Walnut Hills High School Music 2025 artwork featuring marching musicians"
+              class="hero-photo"
+              id="heroPhoto"
+              src="hero-marching-band.webp"
+              alt="Walnut Hills student musicians performing together"
+            />
+            <img
+              class="hero-poster"
+              src="fall-concert-poster.png"
+              alt="Walnut Hills Instrumental Music Fall Concert poster"
             />
             <figcaption>
-              Band • Orchestra • Choir • Jazz • Steel Drums
+              <span id="heroCaption">Marching Band</span> • Orchestra • Choir • Jazz • Steel Drums
             </figcaption>
           </figure>
         </div>
@@ -993,8 +1104,9 @@
           <div class="section-head">
             <h2>Make the next note possible.</h2>
             <p>
-              Give once or make an annual pledge. Donors may choose how their
-              family or organization is recognized in concert programs.
+              Give once or become a sustaining monthly donor. Every Patron
+              Donor receives a Walnut Hills Music magnet and recognition in
+              concert programs.
             </p>
           </div>
           <div class="give-grid">
@@ -1036,58 +1148,39 @@
                   <b>Friend · $50</b
                   ><span>Sheet music and supplies</span></button
                 ><button class="tier selected" data-amount="100">
-                  <b>Patron · $100</b
+                  <b>Supporter · $100</b
                   ><span>Keep instruments performance-ready</span></button
                 ><button class="tier" data-amount="250">
-                  <b>Soloist · $250</b
-                  ><span>Support a clinician or lesson</span></button
-                ><button class="tier" data-amount="1000">
-                  <b>Maestro · $1,000</b
-                  ><span>Transform a student experience</span>
+                  <b>Benefactor · $250</b
+                  ><span>Includes two musical theatre tickets*</span></button
+                ><button class="tier" data-amount="500">
+                  <b>Angel · $500</b
+                  ><span>Includes four musical theatre tickets*</span>
                 </button>
               </div>
+              <p class="paypal-note" style="margin: 14px 0 0">
+                *Tickets must be reserved in advance and are valid for main-auditorium musical theatre productions.
+              </p>
             </div>
-            <form class="donate-box" id="donateForm">
+            <div class="donate-box">
               <h3 style="font: 700 1.7rem Georgia; margin: 0">
                 Your tax-deductible gift
               </h3>
-              <div class="field">
-                <label for="amount">Gift amount</label
-                ><input
-                  id="amount"
-                  type="number"
-                  min="5"
-                  value="100"
-                  required
-                />
-              </div>
-              <div class="field">
-                <label for="fund">Direct my gift</label
-                ><select id="fund">
-                  <option>Where needed most</option>
-                  <option>Band</option>
-                  <option>Orchestra</option>
-                  <option>Choir</option>
-                  <option>Jazz & Steel Drums</option>
-                  <option>Marching Blue & Gold</option>
-                  <option>Access & lesson scholarships</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="recognition">Program recognition</label
-                ><input
-                  id="recognition"
-                  placeholder="The Doe Family (optional)"
-                />
-              </div>
-              <button class="btn gold" style="width: 100%" type="submit">
-                Continue securely with PayPal
-              </button>
-              <p class="paypal-note">
-                Mockup: WHIP’s verified PayPal Business checkout URL or merchant
-                ID is required before launch. No payment is processed here.
+              <p>
+                Your gift supports instruments, music, private-lesson scholarships,
+                guest artists, concert wear and student participation.
               </p>
-            </form>
+              <a
+                class="btn gold"
+                style="width: 100%; box-sizing: border-box"
+                href="https://www.paypal.com/donate/?hosted_button_id=227FMDUXHZDX2"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Donate securely with PayPal</a>
+              <p class="paypal-note">
+                One-time and sustaining monthly gifts are available through PayPal.
+              </p>
+            </div>
           </div>
           <div class="impact-card" style="margin-top: 46px">
             <div class="eyebrow" style="color: var(--green)">
@@ -1115,7 +1208,7 @@
           <div class="products">
             <article class="product">
               <div class="product-art">
-                <img src="walnut-hills-music-lover-magnet.svg" alt="Walnut Hills Music Lover oval car magnet" />
+                <img src="whip-car-magnet.jpeg" alt="Walnut Hills Music Lover oval car magnet" />
               </div>
               <h3>WHIP car magnet</h3>
               <p>Classic gold-and-blue music pride.</p>
@@ -1136,7 +1229,7 @@
             </article>
             <article class="product">
               <a href="https://givebutter.com/c/WalnutGatherings26/auction/items/1642672" target="_blank" rel="noreferrer" class="product-art" aria-label="Buy tickets to the Tacos and Tequila parent social">
-                <img src="parent-social-rooftop.png" alt="Parents enjoying a rooftop social at The Vues at Mount Adams" />
+                <img src="parent-social-rooftop.png" alt="Rooftop live music and gathering at sunset for the Tacos and Tequila Parent Social" />
               </a>
               <h3>Tacos &amp; Tequila Parent Social</h3>
               <p>Join WHIP parents for a fun evening at The Vues at Mount Adams. Ticket purchases support WHIP.</p>
@@ -1162,42 +1255,21 @@
             </p>
           </div>
           <div class="events">
-            <div>
-              <article class="event">
-                <div class="date"><span>SEP</span><b>14</b></div>
-                <div>
-                  <h3>WHIP general meeting</h3>
-                  <p>Main Conference Room + virtual • 7:00 PM</p>
+            <div id="currentMonthEvents" aria-live="polite"></div>
+            <aside class="calendar-card">
+              <div class="eyebrow" style="color: var(--gold2)">Spring 2026</div>
+              <h3>Concert calendar</h3>
+              <div class="calendar-month" id="calendarMonth" aria-live="polite">
+                <header><span id="calendarMonthName"></span><span id="calendarYear"></span></header>
+                <div class="calendar-grid" id="calendarGrid">
+                  <span class="day-name">S</span><span class="day-name">M</span><span class="day-name">T</span><span class="day-name">W</span><span class="day-name">T</span><span class="day-name">F</span><span class="day-name">S</span>
                 </div>
-                <a href="#" class="btn outline">Details</a>
-              </article>
-              <article class="event">
-                <div class="date"><span>FALL</span><b>26</b></div>
-                <div>
-                  <h3>Music concert season</h3>
-                  <p>Band, choir and orchestra performances</p>
-                </div>
-                <a href="#" class="btn outline">Calendar</a>
-              </article>
-              <article class="event">
-                <div class="date"><span>2027</span><b>FEB</b></div>
-                <div>
-                  <h3>WalnutFest</h3>
-                  <p>Annual community gala and fundraiser</p>
-                </div>
-                <a href="#" class="btn outline">Learn more</a>
-              </article>
-            </div>
-            <aside class="volunteer">
-              <div class="eyebrow" style="color: var(--navy)">Give time</div>
-              <h2>It takes a whole orchestra.</h2>
-              <p>
-                Help at concerts, join Paycor Stadium concessions, coordinate
-                volunteers, support communications or lend a professional skill.
-              </p>
-              <button class="btn" id="volunteerBtn">
-                Find a volunteer role
-              </button>
+              </div>
+              <div class="calendar-actions">
+                <a class="btn gold" href="whip-spring-2026-concerts.ics">Download iCal</a>
+                <a class="btn" href="https://calendar.google.com/calendar/u/0/r/settings/addbyurl?url=https%3A%2F%2Fwalnuthillsmusic.org%2Fwhip-spring-2026-concerts.ics" target="_blank" rel="noopener noreferrer">Google Calendar</a>
+              </div>
+              <p class="calendar-note">Admission is free. Donations are welcome. All concerts begin at 7:00 PM unless noted.</p>
             </aside>
           </div>
         </div>
@@ -1297,9 +1369,45 @@
       </div>
     </dialog>
     <div class="toast" id="toast">Added to cart</div>
+    <script src="hero-variants.js"></script>
     <script>
+      (() => {
+        const variants = window.WHIP_HERO_VARIANTS || [];
+        if (!variants.length) return;
+        const requested = new URLSearchParams(location.search).get("hero");
+        const saved = sessionStorage.getItem("whipHeroVariant");
+        const selected =
+          variants.find((variant) => variant.id === requested) ||
+          variants.find((variant) => variant.id === saved) ||
+          variants[Math.floor(Math.random() * variants.length)];
+        sessionStorage.setItem("whipHeroVariant", selected.id);
+        const photo = document.getElementById("heroPhoto");
+        photo.src = selected.src;
+        photo.alt = selected.alt;
+        document.getElementById("heroCaption").textContent = selected.label;
+      })();
+
       const cart = [],
         $ = (s) => document.querySelector(s);
+      const schedule = [
+        [2026, 3, 30, "Jazz Ensembles Concert", "Auditorium • 7:00 PM"],
+        [2026, 4, 6, "Beginning, Intermediate & Junior Band", "Auditorium • 7:00 PM"],
+        [2026, 4, 7, "Symphonic Band & Wind Ensemble", "Auditorium • 7:00 PM"],
+        [2026, 4, 8, "Steel Drum Concert", "Triangle Courtyard • 7:00 PM"],
+        [2026, 4, 11, "Junior High Choirs Concert", "Auditorium • 7:00 PM"],
+        [2026, 4, 12, "Senior High Choirs Concert", "Auditorium • 7:00 PM"],
+        [2026, 4, 13, "Senior and Chamber Orchestra Concert", "Auditorium • 7:00 PM"],
+        [2026, 4, 14, "Beginning, Intermediate & Junior Strings", "Auditorium • 7:00 PM"],
+      ];
+      (() => {
+        const now = new Date(), year = now.getFullYear(), month = now.getMonth();
+        const events = schedule.filter((e) => e[0] === year && e[1] === month);
+        const names = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+        $("#calendarMonthName").textContent = names[month]; $("#calendarYear").textContent = year;
+        const grid = $("#calendarGrid"), first = new Date(year, month, 1).getDay(), days = new Date(year, month + 1, 0).getDate();
+        grid.innerHTML = ["S","M","T","W","T","F","S"].map(d => `<span class="day-name">${d}</span>`).join("") + Array(first).fill("<span></span>").join("") + Array.from({length: days}, (_,i) => `<span class="${events.some(e => e[2] === i + 1) ? "concert-day" : ""}">${i + 1}</span>`).join("");
+        $("#currentMonthEvents").innerHTML = events.length ? events.slice(0,3).map(e => `<article class="event"><div class="date"><span>${names[month].slice(0,3).toUpperCase()}</span><b>${e[2]}</b></div><div><h3>${e[3]}</h3><p>${e[4]}</p></div><a href="whip-spring-2026-concerts.ics" class="btn outline">Add</a></article>`).join("") : `<article class="event"><div><h3>No posted events this month</h3><p>Check back soon, or download the current concert calendar.</p></div></article>`;
+      })();
       document.querySelectorAll(".tier").forEach(
         (b) =>
           (b.onclick = () => {
@@ -1307,7 +1415,6 @@
               .querySelectorAll(".tier")
               .forEach((x) => x.classList.remove("selected"));
             b.classList.add("selected");
-            $("#amount").value = b.dataset.amount;
           }),
       );
       function message(title, text) {
@@ -1315,13 +1422,6 @@
         $("#messageText").textContent = text;
         $("#messageDialog").showModal();
       }
-      $("#donateForm").onsubmit = (e) => {
-        e.preventDefault();
-        message(
-          "Donation handoff ready",
-          `The live site would now send a $${$("#amount").value} gift for “${$("#fund").value}” to WHIP’s verified PayPal Business checkout, preserving the fund and recognition details.`,
-        );
-      };
       document.querySelectorAll(".add").forEach(
         (b) =>
           (b.onclick = () => {
