@@ -21,6 +21,25 @@ TZNAME:EDT
 END:DAYLIGHT
 END:VTIMEZONE
 BEGIN:VEVENT
+UID:whip-20260914-general-meeting@walnuthillsmusic.org
+DTSTAMP:20260909T000000Z
+DTSTART;TZID=America/New_York:20260914T190000
+DTEND;TZID=America/New_York:20260914T200000
+SUMMARY:WHIP General Meeting
+LOCATION:Walnut Hills High School Conference Room
+DESCRIPTION:Walnut Hills Instrumental Parents general meeting.
+END:VEVENT
+BEGIN:VEVENT
+UID:whip-20260919-tacos-tequila@walnuthillsmusic.org
+DTSTAMP:20260909T000000Z
+DTSTART;TZID=America/New_York:20260919T190000
+DTEND;TZID=America/New_York:20260919T220000
+SUMMARY:Tacos\, Tequila & Rooftop Views
+LOCATION:The Vues at Mount Adams
+URL:https://givebutter.com/c/WalnutGatherings26/auction/items/1642672
+DESCRIPTION:WHIP parent social fundraiser. Ticket purchases support WHIP.
+END:VEVENT
+BEGIN:VEVENT
 UID:whip-20260430-jazz@walnuthillsmusic.org
 DTSTAMP:20260908T000000Z
 DTSTART;TZID=America/New_York:20260430T190000

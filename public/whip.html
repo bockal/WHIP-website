@@ -659,9 +659,29 @@
       .calendar-month header {
         display: flex;
         justify-content: space-between;
-        align-items: baseline;
+        align-items: center;
         font: 700 1.1rem Georgia;
         margin-bottom: 10px;
+      }
+      .calendar-nav {
+        display: flex;
+        gap: 6px;
+      }
+      .calendar-nav button {
+        width: 28px;
+        height: 28px;
+        border: 1px solid #bcc4d2;
+        border-radius: 50%;
+        background: #fff;
+        color: var(--navy);
+        cursor: pointer;
+        font-size: 1rem;
+        line-height: 1;
+      }
+      .calendar-nav button:hover,
+      .calendar-nav button:focus-visible {
+        background: var(--gold);
+        border-color: var(--gold);
       }
       .calendar-grid {
         display: grid;
@@ -1229,7 +1249,7 @@
             </article>
             <article class="product">
               <a href="https://givebutter.com/c/WalnutGatherings26/auction/items/1642672" target="_blank" rel="noreferrer" class="product-art" aria-label="Buy tickets to the Tacos and Tequila parent social">
-                <img src="parent-social-rooftop.png" alt="Rooftop live music and gathering at sunset for the Tacos and Tequila Parent Social" />
+                <img src="parent-social-rooftop.png?v=20260909-2" alt="Rooftop live music and gathering at sunset for the Tacos and Tequila Parent Social" />
               </a>
               <h3>Tacos &amp; Tequila Parent Social</h3>
               <p>Join WHIP parents for a fun evening at The Vues at Mount Adams. Ticket purchases support WHIP.</p>
@@ -1257,10 +1277,16 @@
           <div class="events">
             <div id="currentMonthEvents" aria-live="polite"></div>
             <aside class="calendar-card">
-              <div class="eyebrow" style="color: var(--gold2)">Spring 2026</div>
-              <h3>Concert calendar</h3>
+              <div class="eyebrow" style="color: var(--gold2)">WHIP events</div>
+              <h3>Event calendar</h3>
               <div class="calendar-month" id="calendarMonth" aria-live="polite">
-                <header><span id="calendarMonthName"></span><span id="calendarYear"></span></header>
+                <header>
+                  <div><span id="calendarMonthName"></span> <span id="calendarYear"></span></div>
+                  <div class="calendar-nav" aria-label="Browse calendar months">
+                    <button type="button" id="calendarPrevious" aria-label="Previous month">&#8249;</button>
+                    <button type="button" id="calendarNext" aria-label="Next month">&#8250;</button>
+                  </div>
+                </header>
                 <div class="calendar-grid" id="calendarGrid">
                   <span class="day-name">S</span><span class="day-name">M</span><span class="day-name">T</span><span class="day-name">W</span><span class="day-name">T</span><span class="day-name">F</span><span class="day-name">S</span>
                 </div>
@@ -1269,7 +1295,7 @@
                 <a class="btn gold" href="whip-spring-2026-concerts.ics">Download iCal</a>
                 <a class="btn" href="https://calendar.google.com/calendar/u/0/r/settings/addbyurl?url=https%3A%2F%2Fwalnuthillsmusic.org%2Fwhip-spring-2026-concerts.ics" target="_blank" rel="noopener noreferrer">Google Calendar</a>
               </div>
-              <p class="calendar-note">Admission is free. Donations are welcome. All concerts begin at 7:00 PM unless noted.</p>
+              <p class="calendar-note">Use the arrows to browse upcoming months. Concert admission is free; donations are welcome.</p>
             </aside>
           </div>
         </div>
@@ -1390,6 +1416,8 @@
       const cart = [],
         $ = (s) => document.querySelector(s);
       const schedule = [
+        [2026, 8, 14, "WHIP General Meeting", "Walnut Hills High School Conference Room • 7:00 PM"],
+        [2026, 8, 19, "Tacos, Tequila & Rooftop Views", "The Vues at Mount Adams • 7:00–10:00 PM", "https://givebutter.com/c/WalnutGatherings26/auction/items/1642672", "Tickets"],
         [2026, 3, 30, "Jazz Ensembles Concert", "Auditorium • 7:00 PM"],
         [2026, 4, 6, "Beginning, Intermediate & Junior Band", "Auditorium • 7:00 PM"],
         [2026, 4, 7, "Symphonic Band & Wind Ensemble", "Auditorium • 7:00 PM"],
@@ -1400,13 +1428,20 @@
         [2026, 4, 14, "Beginning, Intermediate & Junior Strings", "Auditorium • 7:00 PM"],
       ];
       (() => {
-        const now = new Date(), year = now.getFullYear(), month = now.getMonth();
-        const events = schedule.filter((e) => e[0] === year && e[1] === month);
         const names = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-        $("#calendarMonthName").textContent = names[month]; $("#calendarYear").textContent = year;
-        const grid = $("#calendarGrid"), first = new Date(year, month, 1).getDay(), days = new Date(year, month + 1, 0).getDate();
-        grid.innerHTML = ["S","M","T","W","T","F","S"].map(d => `<span class="day-name">${d}</span>`).join("") + Array(first).fill("<span></span>").join("") + Array.from({length: days}, (_,i) => `<span class="${events.some(e => e[2] === i + 1) ? "concert-day" : ""}">${i + 1}</span>`).join("");
-        $("#currentMonthEvents").innerHTML = events.length ? events.slice(0,3).map(e => `<article class="event"><div class="date"><span>${names[month].slice(0,3).toUpperCase()}</span><b>${e[2]}</b></div><div><h3>${e[3]}</h3><p>${e[4]}</p></div><a href="whip-spring-2026-concerts.ics" class="btn outline">Add</a></article>`).join("") : `<article class="event"><div><h3>No posted events this month</h3><p>Check back soon, or download the current concert calendar.</p></div></article>`;
+        let view = new Date();
+        view = new Date(view.getFullYear(), view.getMonth(), 1);
+        const renderCalendar = () => {
+          const year = view.getFullYear(), month = view.getMonth();
+          const events = schedule.filter((e) => e[0] === year && e[1] === month);
+          $("#calendarMonthName").textContent = names[month]; $("#calendarYear").textContent = year;
+          const grid = $("#calendarGrid"), first = new Date(year, month, 1).getDay(), days = new Date(year, month + 1, 0).getDate();
+          grid.innerHTML = ["S","M","T","W","T","F","S"].map(d => `<span class="day-name">${d}</span>`).join("") + Array(first).fill("<span></span>").join("") + Array.from({length: days}, (_,i) => `<span class="${events.some(e => e[2] === i + 1) ? "concert-day" : ""}">${i + 1}</span>`).join("");
+          $("#currentMonthEvents").innerHTML = events.length ? events.slice(0,3).map(e => `<article class="event"><div class="date"><span>${names[month].slice(0,3).toUpperCase()}</span><b>${e[2]}</b></div><div><h3>${e[3]}</h3><p>${e[4]}</p></div><a href="${e[5] || "whip-spring-2026-concerts.ics"}"${e[5] ? ' target="_blank" rel="noopener noreferrer"' : ""} class="btn outline">${e[6] || "Add"}</a></article>`).join("") : `<article class="event"><div><h3>No posted events this month</h3><p>Check back soon, or browse another month in the calendar.</p></div></article>`;
+        };
+        $("#calendarPrevious").addEventListener("click", () => { view.setMonth(view.getMonth() - 1); renderCalendar(); });
+        $("#calendarNext").addEventListener("click", () => { view.setMonth(view.getMonth() + 1); renderCalendar(); });
+        renderCalendar();
       })();
       document.querySelectorAll(".tier").forEach(
         (b) =>
