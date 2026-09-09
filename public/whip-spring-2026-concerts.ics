@@ -40,6 +40,15 @@ URL:https://givebutter.com/c/WalnutGatherings26/auction/items/1642672
 DESCRIPTION:WHIP parent social fundraiser. Ticket purchases support WHIP.
 END:VEVENT
 BEGIN:VEVENT
+UID:whip-20260919-norwood-omea@walnuthillsmusic.org
+DTSTAMP:20260909T000000Z
+DTSTART;VALUE=DATE:20260919
+DTEND;VALUE=DATE:20260920
+SUMMARY:Norwood OMEA Marching Band Competition - evening
+LOCATION:Shea Stadium\, 2603 Harris Ave\, Norwood\, OH 45212
+DESCRIPTION:Walnut Hills Marching Band competition. Evening performance; schedule details to follow.
+END:VEVENT
+BEGIN:VEVENT
 UID:whip-20260430-jazz@walnuthillsmusic.org
 DTSTAMP:20260908T000000Z
 DTSTART;TZID=America/New_York:20260430T190000
