@@ -1,0 +1,73 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Walnut Hills Instrumental Parents//Events Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Walnut Hills Music Events
+X-WR-TIMEZONE:America/New_York
+BEGIN:VEVENT
+UID:whip-20260917-john-mackey-ccm@walnuthillsmusic.org
+DTSTAMP:20260916T130000Z
+DTSTART;TZID=America/New_York:20260917T183000
+DTEND;TZID=America/New_York:20260917T213000
+SUMMARY:John Mackey Q&A and CCM Wind Symphony Concert
+LOCATION:University of Cincinnati College-Conservatory of Music
+DESCRIPTION:Q&A with composer John Mackey at 6:30 PM followed by the CCM Wind Symphony concert at 7:30 PM. Student RSVP and ticket required.
+END:VEVENT
+BEGIN:VEVENT
+UID:whip-20260917-fundraiser-deadline@walnuthillsmusic.org
+DTSTAMP:20260916T130000Z
+DTSTART;VALUE=DATE:20260917
+DTEND;VALUE=DATE:20260918
+SUMMARY:Walnut Hills Music Fundraiser Orders Due
+LOCATION:Walnut Hills High School
+DESCRIPTION:Otis Spunkmeyer music fundraiser order forms and payment are due. Checks should be payable to WHIP.
+END:VEVENT
+BEGIN:VEVENT
+UID:whip-20260919-norwood-invitational@walnuthillsmusic.org
+DTSTAMP:20260916T130000Z
+DTSTART;TZID=America/New_York:20260919T183000
+DTEND;TZID=America/New_York:20260919T193000
+SUMMARY:Norwood Invitational - Walnut Hills Performance
+LOCATION:Shea Stadium\, 2603 Harris Ave.\, Norwood\, OH 45212
+DESCRIPTION:Walnut Hills Marching Blue & Gold performs at 6:30 PM. Awards begin at 7:00 PM. Admission and parking information are available from the band directors.
+END:VEVENT
+BEGIN:VEVENT
+UID:whip-20261003-buckeye-invitational@walnuthillsmusic.org
+DTSTAMP:20260916T130000Z
+DTSTART;TZID=America/New_York:20261003T183000
+DTEND;TZID=America/New_York:20261003T193000
+SUMMARY:Buckeye Invitational - Walnut Hills Performance
+LOCATION:Ohio Stadium\, 411 Woody Hayes Dr.\, Columbus\, OH 43210
+DESCRIPTION:Walnut Hills Marching Blue & Gold performs at 6:30 PM at the Buckeye Invitational. The Ohio State University Marching Band performs at 9:00 PM and awards begin at 9:30 PM.
+END:VEVENT
+BEGIN:VEVENT
+UID:whip-20261016-cedar-point-trip@walnuthillsmusic.org
+DTSTAMP:20260916T130000Z
+DTSTART;VALUE=DATE:20261016
+DTEND;VALUE=DATE:20261018
+SUMMARY:Marching Blue & Gold Kalahari and Cedar Point Trip
+LOCATION:Kalahari Resorts and Cedar Point\, Sandusky\, Ohio
+DESCRIPTION:Marching Blue & Gold overnight trip October 16-17 culminating in a Cedar Point performance. Final schedule is available from the band directors.
+END:VEVENT
+BEGIN:VEVENT
+UID:whip-20261021-fundraiser-pickup@walnuthillsmusic.org
+DTSTAMP:20260916T130000Z
+DTSTART;VALUE=DATE:20261021
+DTEND;VALUE=DATE:20261022
+SUMMARY:Anticipated Walnut Hills Music Fundraiser Pickup
+LOCATION:Walnut Hills High School
+DESCRIPTION:Anticipated Otis Spunkmeyer delivery and family pickup date. The final date will be confirmed after the sale closes.
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:whip-20270306-steel-band-25th@walnuthillsmusic.org
+DTSTAMP:20260916T130000Z
+DTSTART;VALUE=DATE:20270306
+DTEND;VALUE=DATE:20270307
+SUMMARY:Steel Band 25th Anniversary Concert - Save the Date
+LOCATION:Walnut Hills High School
+DESCRIPTION:Special 25th anniversary concert planned for March 6\, 2027. Guest artists\, alumni participation\, ticketing and final event details are still to be confirmed.
+STATUS:TENTATIVE
+END:VEVENT
+END:VCALENDAR

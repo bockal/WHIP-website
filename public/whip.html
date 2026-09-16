@@ -545,7 +545,7 @@
       }
       .products {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 18px;
       }
       .product {
@@ -577,6 +577,24 @@
         object-fit: contain;
         display: block;
       }
+      .event-visual img {
+        object-fit: cover;
+        object-position: center top;
+      }
+      .event-visual:before {
+        content: "UPCOMING EVENTS";
+        position: absolute;
+        left: 14px;
+        bottom: 14px;
+        z-index: 1;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: var(--navy);
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+      }
       .product-art:after {
         content: none;
       }
@@ -590,12 +608,27 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .ticket-status {
+        color: var(--navy);
+        font-size: 0.78rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
       }
       .mini {
         padding: 0.55rem 0.8rem;
         border: 0;
+        border-radius: 999px;
         background: var(--gold);
+        color: var(--navy);
         font-weight: 900;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
       }
       .events {
         display: grid;
@@ -659,29 +692,9 @@
       .calendar-month header {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: baseline;
         font: 700 1.1rem Georgia;
         margin-bottom: 10px;
-      }
-      .calendar-nav {
-        display: flex;
-        gap: 6px;
-      }
-      .calendar-nav button {
-        width: 28px;
-        height: 28px;
-        border: 1px solid #bcc4d2;
-        border-radius: 50%;
-        background: #fff;
-        color: var(--navy);
-        cursor: pointer;
-        font-size: 1rem;
-        line-height: 1;
-      }
-      .calendar-nav button:hover,
-      .calendar-nav button:focus-visible {
-        background: var(--gold);
-        border-color: var(--gold);
       }
       .calendar-grid {
         display: grid;
@@ -721,6 +734,107 @@
         color: #ccd2df;
         font-size: 0.8rem;
         margin: 16px 0 0;
+      }
+      .ticket-plan {
+        margin-top: 28px;
+        padding: 24px 26px;
+        border: 1px solid #d6b653;
+        border-radius: 16px;
+        background: #fff8dc;
+        color: var(--ink);
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 24px;
+        align-items: center;
+      }
+      .ticket-plan h3 {
+        margin: 0 0 6px;
+        font: 700 1.45rem/1.15 Georgia, serif;
+        color: var(--navy);
+      }
+      .ticket-plan p {
+        margin: 0;
+        color: var(--muted);
+      }
+      .ticket-plan .btn[aria-disabled="true"] {
+        cursor: not-allowed;
+        opacity: 0.72;
+      }
+      .more-events[hidden] {
+        display: none;
+      }
+      .events-toggle {
+        width: 100%;
+        margin-top: 12px;
+        padding: 12px 16px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: white;
+        color: var(--navy);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        font: inherit;
+        font-weight: 900;
+        cursor: pointer;
+      }
+      .events-toggle .chevron {
+        font-size: 1.25rem;
+        line-height: 1;
+        transition: transform 180ms ease;
+      }
+      .events-toggle[aria-expanded="true"] .chevron {
+        transform: rotate(180deg);
+      }
+      .calendar-title-row {
+        display: grid !important;
+        grid-template-columns: 34px 1fr 34px;
+        gap: 8px;
+        align-items: center;
+        text-align: center;
+      }
+      .calendar-nav {
+        width: 34px;
+        height: 34px;
+        padding: 0;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        background: white;
+        color: var(--navy);
+        display: grid;
+        place-items: center;
+        font-size: 1.25rem;
+        cursor: pointer;
+      }
+      .calendar-nav:hover,
+      .calendar-nav:focus-visible {
+        background: var(--cream);
+      }
+      .calendar-month-title {
+        display: grid;
+        gap: 2px;
+      }
+      .calendar-month-title strong {
+        font-size: 1.05rem;
+      }
+      .calendar-month-title small {
+        color: var(--muted);
+        font: 800 0.72rem Arial, sans-serif;
+      }
+      .calendar-grid button {
+        min-height: 30px;
+        border: 0;
+        border-radius: 50%;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+      }
+      .calendar-grid button.concert-day {
+        background: var(--gold);
+        color: var(--navy);
+        font-weight: 900;
+        cursor: help;
       }
       .governance {
         background: var(--cream);
@@ -766,10 +880,14 @@
         font: 700 1.3rem Georgia;
         color: white;
       }
-      .foot a {
+      .foot a,
+      .foot .pending-link {
         display: block;
         text-decoration: none;
         margin: 7px 0;
+      }
+      .foot .pending-link {
+        color: inherit;
       }
       .copyright {
         max-width: 1180px;
@@ -838,6 +956,9 @@
         .hero-inner,
         .give-grid,
         .events {
+          grid-template-columns: 1fr;
+        }
+        .ticket-plan {
           grid-template-columns: 1fr;
         }
         .impact-card {
@@ -1248,20 +1369,16 @@
               </div>
             </article>
             <article class="product">
-              <a href="https://givebutter.com/c/WalnutGatherings26/auction/items/1642672" target="_blank" rel="noreferrer" class="product-art" aria-label="Buy tickets to the Tacos and Tequila parent social">
-                <img src="parent-social-rooftop.png?v=20260909-2" alt="Rooftop live music and gathering at sunset for the Tacos and Tequila Parent Social" />
+              <a href="#events" class="product-art event-visual" aria-label="View upcoming Walnut Hills music events">
+                <img src="walnut-hills-music-fundraiser.png" alt="Walnut Hills Music fundraiser flyer" />
               </a>
-              <h3>Tacos &amp; Tequila Parent Social</h3>
-              <p>Join WHIP parents for a fun evening at The Vues at Mount Adams. Ticket purchases support WHIP.</p>
+              <h3>Upcoming events &amp; tickets</h3>
+              <p>See performances, competitions and WHIP-hosted fundraising events in one place.</p>
               <div class="product-row">
-                <a class="mini" href="https://givebutter.com/c/WalnutGatherings26/auction/items/1642672" target="_blank" rel="noreferrer">Get tickets</a>
+                <a class="mini" href="#events">View calendar</a>
+                <span class="ticket-status">Tickets coming soon</span>
               </div>
             </article>
-          </div>
-          <div style="text-align: center; margin-top: 24px">
-            <button class="btn gold" id="openCart">
-              View cart · <span id="cartCount">0</span>
-            </button>
           </div>
         </div>
       </section>
@@ -1275,28 +1392,87 @@
             </p>
           </div>
           <div class="events">
-            <div id="currentMonthEvents" aria-live="polite"></div>
-            <aside class="calendar-card">
-              <div class="eyebrow" style="color: var(--gold2)">WHIP events</div>
-              <h3>Event calendar</h3>
-              <div class="calendar-month" id="calendarMonth" aria-live="polite">
-                <header>
-                  <div><span id="calendarMonthName"></span> <span id="calendarYear"></span></div>
-                  <div class="calendar-nav" aria-label="Browse calendar months">
-                    <button type="button" id="calendarPrevious" aria-label="Previous month">&#8249;</button>
-                    <button type="button" id="calendarNext" aria-label="Next month">&#8250;</button>
+            <div>
+              <article class="event">
+                <div class="date"><span>SEP</span><b>17</b></div>
+                <div>
+                  <h3>John Mackey Q&amp;A &amp; CCM Wind Symphony</h3>
+                  <p>CCM • Q&amp;A 6:30 PM • Concert 7:30 PM</p>
+                </div>
+                <a href="whip-events.ics" class="btn outline" title="Download the complete WHIP events calendar">iCal</a>
+              </article>
+              <article class="event">
+                <div class="date"><span>SEP</span><b>19</b></div>
+                <div>
+                  <h3>Norwood Invitational</h3>
+                  <p>Shea Stadium • Walnut Hills performs 6:30 PM</p>
+                </div>
+                <a href="whip-events.ics" class="btn outline" title="Download the complete WHIP events calendar">iCal</a>
+              </article>
+              <article class="event">
+                <div class="date"><span>OCT</span><b>3</b></div>
+                <div>
+                  <h3>Buckeye Invitational</h3>
+                  <p>Ohio Stadium • Walnut Hills performs 6:30 PM</p>
+                </div>
+                <a href="whip-events.ics" class="btn outline" title="Download the complete WHIP events calendar">iCal</a>
+              </article>
+              <div class="more-events" id="moreEvents" hidden>
+                <article class="event">
+                  <div class="date"><span>OCT</span><b>16</b></div>
+                  <div>
+                    <h3>Kalahari &amp; Cedar Point Trip</h3>
+                    <p>October 16–17 • Marching Blue &amp; Gold performance trip</p>
                   </div>
+                  <a href="whip-events.ics" class="btn outline" title="Download the complete WHIP events calendar">iCal</a>
+                </article>
+                <article class="event">
+                  <div class="date"><span>OCT</span><b>21</b></div>
+                  <div>
+                    <h3>Music Fundraiser Pickup</h3>
+                    <p>WHHS • Anticipated Otis Spunkmeyer delivery date</p>
+                  </div>
+                  <a href="whip-events.ics" class="btn outline" title="Download the complete WHIP events calendar">iCal</a>
+                </article>
+                <article class="event">
+                  <div class="date"><span>MAR</span><b>6</b></div>
+                  <div>
+                    <h3>Steel Band 25th Anniversary</h3>
+                    <p>2027 save the date • Details and ticketing to come</p>
+                  </div>
+                  <a href="whip-events.ics" class="btn outline" title="Download the complete WHIP events calendar">iCal</a>
+                </article>
+              </div>
+              <button class="events-toggle" id="eventsToggle" type="button" aria-expanded="false" aria-controls="moreEvents">
+                <span id="eventsToggleLabel">Show 3 more events</span>
+                <span class="chevron" aria-hidden="true">⌄</span>
+              </button>
+            </div>
+            <aside class="calendar-card">
+              <div class="eyebrow" style="color: var(--gold2)">Fall 2026</div>
+              <h3>Music calendar</h3>
+              <div class="calendar-month" id="calendarMonth" aria-label="September 2026 music calendar">
+                <header class="calendar-title-row">
+                  <button class="calendar-nav" id="calendarPrev" type="button" aria-label="Previous month">‹</button>
+                  <span class="calendar-month-title"><strong id="calendarMonthName">September</strong><small id="calendarYear">2026</small></span>
+                  <button class="calendar-nav" id="calendarNext" type="button" aria-label="Next month">›</button>
                 </header>
                 <div class="calendar-grid" id="calendarGrid">
-                  <span class="day-name">S</span><span class="day-name">M</span><span class="day-name">T</span><span class="day-name">W</span><span class="day-name">T</span><span class="day-name">F</span><span class="day-name">S</span>
                 </div>
               </div>
               <div class="calendar-actions">
-                <a class="btn gold" href="whip-spring-2026-concerts.ics">Download iCal</a>
-                <a class="btn" href="https://calendar.google.com/calendar/u/0/r/settings/addbyurl?url=https%3A%2F%2Fwalnuthillsmusic.org%2Fwhip-spring-2026-concerts.ics" target="_blank" rel="noopener noreferrer">Google Calendar</a>
+                <a class="btn gold" href="whip-events.ics">Download iCal</a>
+                <a class="btn" href="https://calendar.google.com/calendar/u/0/r/settings/addbyurl?url=https%3A%2F%2Fwalnuthillsmusic.org%2Fwhip-events.ics" target="_blank" rel="noopener noreferrer">Subscribe in Google</a>
               </div>
-              <p class="calendar-note">Use the arrows to browse upcoming months. Concert admission is free; donations are welcome.</p>
+              <p class="calendar-note">Use the arrows to browse. Gold dates have events. Download the iCal file once or subscribe in Google for the complete calendar.</p>
             </aside>
+          </div>
+          <div class="ticket-plan" id="tickets">
+            <div>
+              <h3>Direct WHIP ticket sales are coming.</h3>
+              <p>WHIP plans to offer direct online purchases for its own fundraisers and ticketed events, including future Walnut Fest offerings in February and the planned Steel Band 25th Anniversary concert on March 6, 2027. Tickets are not yet on sale.</p>
+            </div>
+            <span class="btn gold" aria-disabled="true">Ticket sales coming soon</span>
           </div>
         </div>
       </section>
@@ -1357,9 +1533,18 @@
         </div>
         <div>
           <h3>Organization</h3>
-          <a href="#about">Board & mission</a><a href="#">Minutes & bylaws</a
-          ><a href="#">Contact WHIP</a
-          ><a href="https://walnuthillseagles.com/departments/fine-arts/music/"
+          <span class="pending-link" title="Financial snapshot to be provided by the WHIP treasurer"
+            >Financial snapshot</span
+          >
+          <a href="whip-general-board-minutes-may-2026.pdf" target="_blank"
+            >Latest meeting minutes</a
+          >
+          <a href="whip-bylaws-december-2025.pdf" target="_blank">Bylaws</a>
+          <a href="mailto:hbcong@gmail.com">Contact WHIP</a>
+          <a
+            href="https://walnuthillseagles.com/departments/fine-arts/music/"
+            target="_blank"
+            rel="noreferrer"
             >School music site ↗</a
           >
         </div>
@@ -1369,23 +1554,6 @@
         nonprofit supporting music education at Walnut Hills High School.
       </div>
     </footer>
-    <dialog id="cartDialog">
-      <div class="modal">
-        <button class="close" data-close>×</button>
-        <h2>Your cart</h2>
-        <div id="cartItems"><p>Your cart is empty.</p></div>
-        <p>
-          <b>Total: $<span id="cartTotal">0</span></b>
-        </p>
-        <button class="btn gold" style="width: 100%" id="checkout">
-          Checkout with PayPal
-        </button>
-        <p class="paypal-note">
-          Mockup only. Final checkout requires WHIP's verified PayPal Business
-          configuration.
-        </p>
-      </div>
-    </dialog>
     <dialog id="messageDialog">
       <div class="modal">
         <button class="close" data-close>×</button>
@@ -1413,37 +1581,66 @@
         document.getElementById("heroCaption").textContent = selected.label;
       })();
 
-      const cart = [],
-        $ = (s) => document.querySelector(s);
-      const schedule = [
-        [2026, 8, 14, "WHIP General Meeting", "Walnut Hills High School Conference Room • 7:00 PM"],
-        [2026, 8, 19, "Tacos, Tequila & Rooftop Views", "The Vues at Mount Adams • 7:00–10:00 PM", "https://givebutter.com/c/WalnutGatherings26/auction/items/1642672", "Tickets"],
-        [2026, 8, 19, "Norwood OMEA Marching Band Competition", "Shea Stadium, 2603 Harris Ave, Norwood • evening"],
-        [2026, 3, 30, "Jazz Ensembles Concert", "Auditorium • 7:00 PM"],
-        [2026, 4, 6, "Beginning, Intermediate & Junior Band", "Auditorium • 7:00 PM"],
-        [2026, 4, 7, "Symphonic Band & Wind Ensemble", "Auditorium • 7:00 PM"],
-        [2026, 4, 8, "Steel Drum Concert", "Triangle Courtyard • 7:00 PM"],
-        [2026, 4, 11, "Junior High Choirs Concert", "Auditorium • 7:00 PM"],
-        [2026, 4, 12, "Senior High Choirs Concert", "Auditorium • 7:00 PM"],
-        [2026, 4, 13, "Senior and Chamber Orchestra Concert", "Auditorium • 7:00 PM"],
-        [2026, 4, 14, "Beginning, Intermediate & Junior Strings", "Auditorium • 7:00 PM"],
-      ];
-      (() => {
-        const names = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-        let view = new Date();
-        view = new Date(view.getFullYear(), view.getMonth(), 1);
-        const renderCalendar = () => {
-          const year = view.getFullYear(), month = view.getMonth();
-          const events = schedule.filter((e) => e[0] === year && e[1] === month);
-          $("#calendarMonthName").textContent = names[month]; $("#calendarYear").textContent = year;
-          const grid = $("#calendarGrid"), first = new Date(year, month, 1).getDay(), days = new Date(year, month + 1, 0).getDate();
-          grid.innerHTML = ["S","M","T","W","T","F","S"].map(d => `<span class="day-name">${d}</span>`).join("") + Array(first).fill("<span></span>").join("") + Array.from({length: days}, (_,i) => `<span class="${events.some(e => e[2] === i + 1) ? "concert-day" : ""}">${i + 1}</span>`).join("");
-          $("#currentMonthEvents").innerHTML = events.length ? events.slice(0,3).map(e => `<article class="event"><div class="date"><span>${names[month].slice(0,3).toUpperCase()}</span><b>${e[2]}</b></div><div><h3>${e[3]}</h3><p>${e[4]}</p></div><a href="${e[5] || "whip-spring-2026-concerts.ics"}"${e[5] ? ' target="_blank" rel="noopener noreferrer"' : ""} class="btn outline">${e[6] || "Add"}</a></article>`).join("") : `<article class="event"><div><h3>No posted events this month</h3><p>Check back soon, or browse another month in the calendar.</p></div></article>`;
-        };
-        $("#calendarPrevious").addEventListener("click", () => { view.setMonth(view.getMonth() - 1); renderCalendar(); });
-        $("#calendarNext").addEventListener("click", () => { view.setMonth(view.getMonth() + 1); renderCalendar(); });
+      const eventsToggle = document.getElementById("eventsToggle");
+      const moreEvents = document.getElementById("moreEvents");
+      eventsToggle.addEventListener("click", () => {
+        const expanded = eventsToggle.getAttribute("aria-expanded") === "true";
+        eventsToggle.setAttribute("aria-expanded", String(!expanded));
+        moreEvents.hidden = expanded;
+        document.getElementById("eventsToggleLabel").textContent = expanded
+          ? "Show 3 more events"
+          : "Show fewer events";
+      });
+
+      const calendarEvents = {
+        "2026-09-17": ["John Mackey Q&A & CCM Wind Symphony", "Music fundraiser orders due"],
+        "2026-09-19": ["Norwood Invitational"],
+        "2026-10-03": ["Buckeye Invitational"],
+        "2026-10-16": ["Kalahari & Cedar Point trip begins"],
+        "2026-10-17": ["Cedar Point performance trip"],
+        "2026-10-21": ["Anticipated music fundraiser pickup"],
+        "2027-03-06": ["Steel Band 25th Anniversary concert"],
+      };
+      const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      let calendarDate = new Date(2026, 8, 1);
+
+      function renderCalendar() {
+        const year = calendarDate.getFullYear();
+        const month = calendarDate.getMonth();
+        const grid = document.getElementById("calendarGrid");
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const firstDay = new Date(year, month, 1).getDay();
+        document.getElementById("calendarMonthName").textContent = monthNames[month];
+        document.getElementById("calendarYear").textContent = year;
+        document.getElementById("calendarMonth").setAttribute("aria-label", `${monthNames[month]} ${year} music calendar`);
+        grid.innerHTML = ["S", "M", "T", "W", "T", "F", "S"]
+          .map((day) => `<span class="day-name">${day}</span>`)
+          .join("");
+        for (let blank = 0; blank < firstDay; blank += 1) {
+          grid.insertAdjacentHTML("beforeend", "<span aria-hidden=\"true\"></span>");
+        }
+        for (let day = 1; day <= daysInMonth; day += 1) {
+          const key = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+          const items = calendarEvents[key];
+          if (items) {
+            const label = `${monthNames[month]} ${day}: ${items.join("; ")}`;
+            grid.insertAdjacentHTML("beforeend", `<button type="button" class="concert-day" aria-label="${label}" title="${label}">${day}</button>`);
+          } else {
+            grid.insertAdjacentHTML("beforeend", `<span>${day}</span>`);
+          }
+        }
+      }
+      document.getElementById("calendarPrev").addEventListener("click", () => {
+        calendarDate = new Date(calendarDate.getFullYear(), calendarDate.getMonth() - 1, 1);
         renderCalendar();
-      })();
+      });
+      document.getElementById("calendarNext").addEventListener("click", () => {
+        calendarDate = new Date(calendarDate.getFullYear(), calendarDate.getMonth() + 1, 1);
+        renderCalendar();
+      });
+      renderCalendar();
+
+      const $ = (s) => document.querySelector(s);
       document.querySelectorAll(".tier").forEach(
         (b) =>
           (b.onclick = () => {
@@ -1458,33 +1655,6 @@
         $("#messageText").textContent = text;
         $("#messageDialog").showModal();
       }
-      document.querySelectorAll(".add").forEach(
-        (b) =>
-          (b.onclick = () => {
-            cart.push({ name: b.dataset.name, price: +b.dataset.price });
-            renderCart();
-            $("#toast").classList.add("show");
-            setTimeout(() => $("#toast").classList.remove("show"), 1400);
-          }),
-      );
-      function renderCart() {
-        $("#cartCount").textContent = cart.length;
-        $("#cartTotal").textContent = cart.reduce((s, x) => s + x.price, 0);
-        $("#cartItems").innerHTML = cart.length
-          ? cart
-              .map(
-                (x) =>
-                  `<div class="cart-item"><span>${x.name}</span><b>$${x.price}</b></div>`,
-              )
-              .join("")
-          : "<p>Your cart is empty.</p>";
-      }
-      $("#openCart").onclick = () => $("#cartDialog").showModal();
-      $("#checkout").onclick = () =>
-        message(
-          "Store checkout ready",
-          "The live site would pass the itemized cart to WHIP’s verified PayPal Business checkout. Product variants, inventory and shipping/pickup rules still need board confirmation.",
-        );
       $("#volunteerBtn").onclick = () =>
         message(
           "Volunteer intake",
