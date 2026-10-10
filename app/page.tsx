@@ -1,11 +1,7 @@
+import { permanentRedirect } from "next/navigation";
+
+const WHIP_SCHOOL_PAGE = "https://walnuthillseagles.com/departments/fine-arts/music-parents-whip/";
+
 export default function Home() {
-  return (
-    <main className="site-shell">
-      <iframe
-        className="site-frame"
-        src="/whip.html"
-        title="Walnut Hills Instrumental Parents"
-      />
-    </main>
-  );
+  permanentRedirect(WHIP_SCHOOL_PAGE);
 }
